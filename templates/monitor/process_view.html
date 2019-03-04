@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>process</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'monitor/main.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-6">
+            {% if process %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-name">process名称: </span>
+                </div>
+                <input type="text" disabled="disabled" class="form-control" value="{{process.name}}"
+                       aria-label="name"
+                       aria-describedby="basic-name">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-pid">process id: </span>
+                </div>
+                <input id="pid" type="text" disabled="disabled" class="form-control" value="{{process.pid}}"
+                       aria-label="pid"
+                       aria-describedby="basic-pid">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-interval">监控间隔：</span>
+                </div>
+                <input id="interval" type="number" class="form-control" value="1" aria-label="interval"
+                       aria-describedby="basic-interval">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-count">监控次数：</span>
+                </div>
+                <input id="count" type="number" class="form-control" aria-label="count" value="10"
+                       aria-describedby="basic-count">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="monitorProcess()">开始监控</button>
+            <button type="button" class="btn btn-primary" onclick="backMain()">返回主页面</button>
+            {% else %}
+            <p>Invalid process :{{pid}}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <script src="{% static 'jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'monitor/process.js' %}"></script>
+</footer>
+</html>
